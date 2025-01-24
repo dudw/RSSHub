@@ -8,7 +8,7 @@ import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import { load } from 'cheerio';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/news/breakingnews/:id',
@@ -83,6 +83,15 @@ async function handler(ctx) {
                     description += content.html();
                 } else if (body.length) {
                     description += body.html();
+                }
+
+                if (data.publisher.name === '轉角國際 udn Global') {
+                    // 轉角24小時
+                    description = $('.story_body_content')
+                        .html()
+                        .split(/<!--\d+?-->/g)
+                        .slice(1, -1)
+                        .join('');
                 }
 
                 return {

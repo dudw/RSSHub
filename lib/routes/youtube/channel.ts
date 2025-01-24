@@ -3,6 +3,8 @@ import cache from '@/utils/cache';
 import utils from './utils';
 import { config } from '@/config';
 import { parseDate } from '@/utils/parse-date';
+import ConfigNotFoundError from '@/errors/types/config-not-found';
+import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 export const route: Route = {
     path: '/channel/:id/:embed?',
@@ -28,23 +30,23 @@ export const route: Route = {
             target: '/channel/:id',
         },
     ],
-    name: 'Channel',
+    name: 'Channel with id',
     maintainers: ['DIYgod'],
     handler,
-    description: `:::tip
+    description: `::: tip
 YouTube provides official RSS feeds for channels, for instance [https://www.youtube.com/feeds/videos.xml?channel\_id=UCDwDMPOZfxVV0x\_dz0eQ8KQ](https://www.youtube.com/feeds/videos.xml?channel_id=UCDwDMPOZfxVV0x_dz0eQ8KQ).
 :::`,
 };
 
 async function handler(ctx) {
     if (!config.youtube || !config.youtube.key) {
-        throw new Error('YouTube RSS is disabled due to the lack of <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config</a>');
+        throw new ConfigNotFoundError('YouTube RSS is disabled due to the lack of <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config</a>');
     }
     const id = ctx.req.param('id');
     const embed = !ctx.req.param('embed');
 
     if (!utils.isYouTubeChannelId(id)) {
-        throw new Error(`Invalid YouTube channel ID. \nYou may want to use <code>/youtube/user/:id</code> instead.`);
+        throw new InvalidParameterError(`Invalid YouTube channel ID. \nYou may want to use <code>/youtube/user/:id</code> instead.`);
     }
 
     const playlistId = (await utils.getChannelWithId(id, 'contentDetails', cache)).data.items[0].contentDetails.relatedPlaylists.uploads;
@@ -67,6 +69,7 @@ async function handler(ctx) {
                     pubDate: parseDate(snippet.publishedAt),
                     link: `https://www.youtube.com/watch?v=${videoId}`,
                     author: snippet.videoOwnerChannelTitle,
+                    image: img.url,
                 };
             }),
     };

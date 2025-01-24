@@ -1,6 +1,6 @@
 import utils from '../../utils';
 
-export default async (ctx) => {
+const handler = async (ctx) => {
     const id = ctx.req.param('id');
     // For compatibility
     const { exclude_replies, include_rts, count } = utils.parseRouteParams(ctx.req.param('routeParams'));
@@ -27,7 +27,7 @@ export default async (ctx) => {
 
     return {
         title: `Twitter @${userInfo.name}`,
-        link: `https://twitter.com/${screen_name}`,
+        link: `https://x.com/${screen_name}`,
         image: profileImageUrl,
         description: userInfo.description,
         item: utils.ProcessFeed(ctx, {
@@ -35,3 +35,4 @@ export default async (ctx) => {
         }),
     };
 };
+export default handler;

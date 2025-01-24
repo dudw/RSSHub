@@ -4,7 +4,7 @@ const __dirname = getCurrentPath(import.meta.url);
 
 import got from '@/utils/got';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { parseDate } from '@/utils/parse-date';
 
 const baseApiUrl = 'https://api.hashnode.com';
@@ -31,9 +31,9 @@ export const route: Route = {
     maintainers: ['hnrainll'],
     handler,
     url: 'hashnode.dev/',
-    description: `:::tip
+    description: `::: tip
   username 为博主用户名，而非\`xxx.hashnode.dev\`中\`xxx\`所代表的 blog 地址。
-  :::`,
+:::`,
 };
 
 async function handler(ctx) {

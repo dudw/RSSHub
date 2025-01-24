@@ -4,7 +4,7 @@ const __dirname = getCurrentPath(import.meta.url);
 
 import got from '@/utils/got';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { generateRssData } from './utils';
 
 export const route: Route = {
@@ -40,9 +40,9 @@ export const route: Route = {
   | ---- | ------ |
   | mens | womens |
 
-  :::tip
+::: tip
   Parameter \`country\` can be found within the url of \`Arcteryx\` website.
-  :::`,
+:::`,
 };
 
 async function handler(ctx) {

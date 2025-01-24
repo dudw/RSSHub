@@ -7,12 +7,12 @@ import { load } from 'cheerio';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 const baseUrl = 'https://nautil.us';
 
 export const route: Route = {
     path: '/topic/:tid',
-    categories: ['new-media'],
+    categories: ['new-media', 'popular'],
     example: '/nautil/topic/arts',
     parameters: { tid: 'topic' },
     features: {

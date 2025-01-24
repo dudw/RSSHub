@@ -1,6 +1,6 @@
 import utils from '../../utils';
 
-export default async (ctx) => {
+const handler = async (ctx) => {
     const keyword = ctx.req.param('keyword');
     const limit = ctx.req.query('limit') ?? 50;
     const client = await utils.getAppClient();
@@ -13,10 +13,11 @@ export default async (ctx) => {
 
     return {
         title: `Twitter Keyword - ${keyword}`,
-        link: `https://twitter.com/search?q=${encodeURIComponent(keyword)}`,
+        link: `https://x.com/search?q=${encodeURIComponent(keyword)}`,
         item: utils.ProcessFeed(ctx, {
             data: data.statuses,
         }),
         allowEmpty: true,
     };
 };
+export default handler;

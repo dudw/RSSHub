@@ -7,8 +7,9 @@ import got from '@/utils/got';
 import { config } from '@/config';
 import { art } from '@/utils/render';
 import { parseDate } from '@/utils/parse-date';
-import * as path from 'node:path';
+import path from 'node:path';
 import MarkdownIt from 'markdown-it';
+import ConfigNotFoundError from '@/errors/types/config-not-found';
 const md = MarkdownIt({
     html: true,
 });
@@ -44,14 +45,14 @@ export const route: Route = {
     maintainers: ['FeCCC'],
     handler,
     url: 'ecchi.iwara.tv/',
-    description: `:::warning
+    description: `::: warning
   This route requires username and password, therefore it's only available when self-hosting, refer to the [Deploy Guide](https://docs.rsshub.app/deploy/config#route-specific-configurations) for route-specific configurations.
-  :::`,
+:::`,
 };
 
 async function handler() {
     if (!config.iwara || !config.iwara.username || !config.iwara.password) {
-        throw new Error('Iwara subscription RSS is disabled due to the lack of <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config</a>');
+        throw new ConfigNotFoundError('Iwara subscription RSS is disabled due to the lack of <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config</a>');
     }
 
     const rootUrl = `https://www.iwara.tv`;
@@ -68,7 +69,7 @@ async function handler() {
                 headers: {
                     'content-type': 'application/json',
                 },
-                data: JSON.stringify({
+                body: JSON.stringify({
                     email: username,
                     password,
                 }),

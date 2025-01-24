@@ -1,4 +1,4 @@
-import { Route } from '@/types';
+import { Route, ViewType } from '@/types';
 import { getCurrentPath } from '@/utils/helpers';
 const __dirname = getCurrentPath(import.meta.url);
 
@@ -7,12 +7,13 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { config } from '@/config';
 
 export const route: Route = {
     path: '/dailyphoto',
     categories: ['picture'],
+    view: ViewType.Pictures,
     example: '/natgeo/dailyphoto',
     parameters: {},
     features: {
@@ -28,8 +29,8 @@ export const route: Route = {
             source: ['nationalgeographic.com/photo-of-the-day/*', 'nationalgeographic.com/'],
         },
     ],
-    name: '每日一图',
-    maintainers: ['LogicJake', 'OrangeEd1t', 'TonyRL'],
+    name: 'Daily Photo',
+    maintainers: ['LogicJake', 'OrangeEd1t', 'TonyRL', 'pseudoyu'],
     handler,
     url: 'nationalgeographic.com/photo-of-the-day/*',
 };
