@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const rootUrl = 'https://tc.ccf.org.cn';
 
@@ -36,8 +36,8 @@ export const route: Route = {
     maintainers: ['elxy'],
     handler,
     description: `| 学术前沿 | 热点征文 | 学术会议 |
-  | -------- | -------- | -------- |
-  | xsqy     | rdzw     | xshy     |`,
+| -------- | -------- | -------- |
+| xsqy     | rdzw     | xshy     |`,
 };
 
 async function handler(ctx) {

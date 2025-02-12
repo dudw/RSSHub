@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const parseContent = (content) =>
     art(path.join(__dirname, 'templates/description.art'), {
@@ -51,7 +51,7 @@ async function handler(ctx) {
 
     let items = response.data.slice(0, limit).map((item) => ({
         title: item.pn,
-        link: item.fp ?? item.pq ?? item.pu,
+        link: item.pu ?? item.pq ?? item.fp,
         description: item.pa,
         author: item.zn,
         pubDate: parseRelativeDate(item.lu.replace(/\.\d+/, '')),
@@ -60,7 +60,7 @@ async function handler(ctx) {
     items = await Promise.all(
         items.map((item) =>
             cache.tryGet(item.link, async () => {
-                const matches = item.link.match(/\/(?:fp|pq|pu)\/([\w-]+)\/(\d+)/);
+                const matches = item.link.match(/\/(?:pl|pq|fp)\/([\w-]+)\/(\d+)/);
 
                 const { data } = await got(`https://${matches[1]}.zhubai.love/api/posts/${matches[2]}`);
 

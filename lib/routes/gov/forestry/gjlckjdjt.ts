@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/forestry/gjlckjdjt/:category?',
@@ -26,13 +26,13 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| 分类     | id   |
-  | -------- | ---- |
-  | 经济林   | jjl  |
-  | 林木良种 | lmlz |
-  | 林下经济 | lxjj |
-  | 生态修复 | stxf |
-  | 用材林   | ycl  |
-  | 其他     | qt   |`,
+| -------- | ---- |
+| 经济林   | jjl  |
+| 林木良种 | lmlz |
+| 林下经济 | lxjj |
+| 生态修复 | stxf |
+| 用材林   | ycl  |
+| 其他     | qt   |`,
 };
 
 async function handler(ctx) {

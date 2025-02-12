@@ -5,6 +5,7 @@ import got from '@/utils/got';
 import { config } from '@/config';
 import weiboUtils from './utils';
 import { fallback, queryToBoolean } from '@/utils/readable-social';
+import ConfigNotFoundError from '@/errors/types/config-not-found';
 
 export const route: Route = {
     path: '/friends/:routeParams?',
@@ -15,6 +16,7 @@ export const route: Route = {
         requireConfig: [
             {
                 name: 'WEIBO_COOKIES',
+                optional: true,
                 description: '',
             },
         ],
@@ -34,18 +36,18 @@ export const route: Route = {
     maintainers: ['CaoMeiYouRen'],
     handler,
     url: 'weibo.com/',
-    description: `:::warning
+    description: `::: warning
   此方案必须使用用户\`Cookie\`进行抓取
 
   因微博 cookies 的过期与更新方案未经验证，部署一次 Cookie 的有效时长未知
 
   微博用户 Cookie 的配置可参照部署文档
-  :::`,
+:::`,
 };
 
 async function handler(ctx) {
     if (!config.weibo.cookies) {
-        throw new Error('Weibo Friends Timeline is not available due to the absense of [Weibo Cookies]. Check <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config tutorial</a>');
+        throw new ConfigNotFoundError('Weibo Friends Timeline is not available due to the absense of [Weibo Cookies]. Check <a href="https://docs.rsshub.app/deploy/config#route-specific-configurations">relevant config tutorial</a>');
     }
 
     let displayVideo = '1';
@@ -139,7 +141,7 @@ async function handler(ctx) {
             }
 
             if (displayComments === '1') {
-                description = await weiboUtils.formatComments(ctx, description, item);
+                description = await weiboUtils.formatComments(ctx, description, item, '0');
             }
 
             if (displayArticle === '1') {

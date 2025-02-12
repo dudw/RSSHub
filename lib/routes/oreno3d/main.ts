@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { load } from 'cheerio';
 import get_sec_page_data from './get-sec-page-data';
 
@@ -56,8 +56,8 @@ export const route: Route = {
     maintainers: ['xueli_sherryli'],
     handler,
     description: `| favorites | hot | latest | popularity |
-  | --------- | --- | ------ | ---------- |
-  | favorites | hot | latest | popularity |`,
+| --------- | --- | ------ | ---------- |
+| favorites | hot | latest | popularity |`,
 };
 
 async function handler(ctx) {

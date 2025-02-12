@@ -6,7 +6,7 @@ import got from '@/utils/got';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/caac/cjwt/:category?',
@@ -32,7 +32,7 @@ export const route: Route = {
     handler,
     url: 'caac.gov.cn/HDJL/',
     description: `| 机票 | 托运 | 无人机 | 体检 | 行政审批 | 投诉 |
-  | ---- | ---- | ------ | ---- | -------- | ---- |`,
+| ---- | ---- | ------ | ---- | -------- | ---- |`,
 };
 
 async function handler(ctx) {

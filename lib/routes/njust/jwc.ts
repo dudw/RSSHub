@@ -3,6 +3,7 @@ import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import { getContent } from './utils';
+import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 const map = new Map([
     ['jstz', { title: '南京理工大学教务处 -- 教师通知', id: '/1216' }],
@@ -30,15 +31,15 @@ export const route: Route = {
     maintainers: ['MilkShakeYoung', 'jasongzy'],
     handler,
     description: `| 教师通知 | 学生通知 | 新闻 | 学院动态 |
-  | -------- | -------- | ---- | -------- |
-  | jstz     | xstz     | xw   | xydt     |`,
+| -------- | -------- | ---- | -------- |
+| jstz     | xstz     | xw   | xydt     |`,
 };
 
 async function handler(ctx) {
     const type = ctx.req.param('type') ?? 'xstz';
     const info = map.get(type);
     if (!info) {
-        throw new Error('invalid type');
+        throw new InvalidParameterError('invalid type');
     }
     const id = info.id;
     const siteUrl = host + id + '/list.htm';

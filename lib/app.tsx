@@ -12,7 +12,9 @@ import debug from '@/middleware/debug';
 import header from '@/middleware/header';
 import antiHotlink from '@/middleware/anti-hotlink';
 import parameter from '@/middleware/parameter';
+import trace from '@/middleware/trace';
 import { jsxRenderer } from 'hono/jsx-renderer';
+import { trimTrailingSlash } from 'hono/trailing-slash';
 
 import logger from '@/utils/logger';
 
@@ -26,16 +28,17 @@ process.on('uncaughtException', (e) => {
 
 const app = new Hono();
 
+app.use(trimTrailingSlash());
 app.use(compress());
 
-app.use(jsxRenderer(
-    ({ children }) => <>{children}</>,
-    {
+app.use(
+    jsxRenderer(({ children }) => <>{children}</>, {
         docType: '<?xml version="1.0" encoding="UTF-8"?>',
-        stream: {}
-    }
-));
+        stream: {},
+    })
+);
 app.use(mLogger);
+app.use(trace);
 app.use(sentry);
 app.use(accessControl);
 app.use(debug);

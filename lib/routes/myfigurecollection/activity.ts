@@ -7,8 +7,9 @@ import { load } from 'cheerio';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { isValidHost } from '@/utils/valid-host';
+import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 export const route: Route = {
     path: '/activity/:category?/:language?/:latestAdditions?/:latestEdits?/:latestAlerts?/:latestPictures?',
@@ -42,28 +43,28 @@ export const route: Route = {
     url: 'zh.myfigurecollection.net/browse',
     description: `Category
 
-  | Figures | Goods | Media |
-  | ------- | ----- | ----- |
-  | 0       | 1     | 2     |
+| Figures | Goods | Media |
+| ------- | ----- | ----- |
+| 0       | 1     | 2     |
 
   Language
 
-  | Id | Language   |
-  | -- | ---------- |
-  |    | en         |
-  | de | Deutsch    |
-  | es | Español    |
-  | fi | Suomeksi   |
-  | fr | Français   |
-  | it | Italiano   |
-  | ja | 日本語     |
-  | nl | Nederlands |
-  | no | Norsk      |
-  | pl | Polski     |
-  | pt | Português  |
-  | ru | Русский    |
-  | sv | Svenska    |
-  | zh | 中文       |`,
+| Id | Language   |
+| -- | ---------- |
+|    | en         |
+| de | Deutsch    |
+| es | Español    |
+| fi | Suomeksi   |
+| fr | Français   |
+| it | Italiano   |
+| ja | 日本語     |
+| nl | Nederlands |
+| no | Norsk      |
+| pl | Polski     |
+| pt | Português  |
+| ru | Русский    |
+| sv | Svenska    |
+| zh | 中文       |`,
 };
 
 async function handler(ctx) {
@@ -75,7 +76,7 @@ async function handler(ctx) {
     const latestPictures = ctx.req.param('latestPictures') ?? '1';
 
     if (language && !isValidHost(language)) {
-        throw new Error('Invalid language');
+        throw new InvalidParameterError('Invalid language');
     }
 
     const rootUrl = `https://${language === 'en' || language === '' ? '' : `${language}.`}myfigurecollection.net`;

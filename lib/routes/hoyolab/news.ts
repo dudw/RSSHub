@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import logger from '@/utils/logger';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { HOST, NEW_LIST, OFFICIAL_PAGE_TYPE, POST_FULL, LINK, PUBLIC_IMG, PRIVATE_IMG } from './constant';
 import { getI18nGameInfo, getI18nType } from './utils';
 
@@ -24,8 +24,8 @@ const getEventList = async ({ type, gids, size, language }) => {
         headers: {
             'X-Rpc-Language': language,
         },
-    }).json();
-    const list = res?.data?.list || [];
+    });
+    const list = res?.data?.data?.list || [];
     return list;
 };
 
@@ -48,9 +48,9 @@ const getPostContent = (list, { language }) =>
                     headers: {
                         'X-Rpc-Language': language,
                     },
-                }).json();
-                const author = res?.data?.post?.user?.nickname || '';
-                let content = res?.data?.post?.post?.content || '';
+                });
+                const author = res?.data?.data?.post?.user?.nickname || '';
+                let content = res?.data?.data?.post?.post?.content || '';
                 if (content === language || !content) {
                     content = post.content;
                 }
@@ -91,29 +91,29 @@ export const route: Route = {
     maintainers: ['ZenoTian'],
     handler,
     description: `| Language         | Code  |
-  | ---------------- | ----- |
-  | 简体中文         | zh-cn |
-  | 繁體中文         | zh-tw |
-  | 日本語           | ja-jp |
-  | 한국어           | ko-kr |
-  | English (US)     | en-us |
-  | Español (EU)     | es-es |
-  | Français         | fr-fr |
-  | Deutsch          | de-de |
-  | Русский          | ru-ru |
-  | Português        | pt-pt |
-  | Español (Latino) | es-mx |
-  | Indonesia        | id-id |
-  | Tiếng Việt       | vi-vn |
-  | ภาษาไทย          | th-th |
+| ---------------- | ----- |
+| 简体中文         | zh-cn |
+| 繁體中文         | zh-tw |
+| 日本語           | ja-jp |
+| 한국어           | ko-kr |
+| English (US)     | en-us |
+| Español (EU)     | es-es |
+| Français         | fr-fr |
+| Deutsch          | de-de |
+| Русский          | ru-ru |
+| Português        | pt-pt |
+| Español (Latino) | es-mx |
+| Indonesia        | id-id |
+| Tiếng Việt       | vi-vn |
+| ภาษาไทย          | th-th |
 
-  | Honkai Impact 3rd | Genshin Impact | Tears of Themis | HoYoLAB | Honkai: Star Rail | Zenless Zone Zero |
-  | ----------------- | -------------- | --------------- | ------- | ----------------- | ----------------- |
-  | 1                 | 2              | 4               | 5       | 6                 | 8                 |
+| Honkai Impact 3rd | Genshin Impact | Tears of Themis | HoYoLAB | Honkai: Star Rail | Zenless Zone Zero |
+| ----------------- | -------------- | --------------- | ------- | ----------------- | ----------------- |
+| 1                 | 2              | 4               | 5       | 6                 | 8                 |
 
-  | Notices | Events | Info |
-  | ------- | ------ | ---- |
-  | 1       | 2      | 3    |`,
+| Notices | Events | Info |
+| ------- | ------ | ---- |
+| 1       | 2      | 3    |`,
 };
 
 async function handler(ctx) {

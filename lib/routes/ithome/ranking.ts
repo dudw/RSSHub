@@ -1,3 +1,4 @@
+import InvalidParameterError from '@/errors/types/invalid-parameter';
 import { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
@@ -20,8 +21,8 @@ export const route: Route = {
     maintainers: ['immmortal', 'luyuhuang'],
     handler,
     description: `| 24h           | 7days    | monthly |
-  | ------------- | -------- | ------- |
-  | 24 小时阅读榜 | 7 天最热 | 月榜    |`,
+| ------------- | -------- | ------- |
+| 24 小时阅读榜 | 7 天最热 | 月榜    |`,
 };
 
 async function handler(ctx) {
@@ -49,7 +50,7 @@ async function handler(ctx) {
     const id = type2id[option];
 
     if (!id) {
-        throw new Error('Bad type. See <a href="https://docs.rsshub.app/routes/new-media#it-zhi-jia">https://docs.rsshub.app/routes/new-media#it-zhi-jia</a>');
+        throw new InvalidParameterError('Bad type. See <a href="https://docs.rsshub.app/routes/new-media#it-zhi-jia">https://docs.rsshub.app/routes/new-media#it-zhi-jia</a>');
     }
 
     const list = $(`#${id} > li`)

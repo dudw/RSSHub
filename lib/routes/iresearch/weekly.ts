@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/weekly/:category?',
@@ -24,7 +24,7 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| 家电行业 | 服装行业 | 美妆行业 | 食品饮料行业 |
-  | -------- | -------- | -------- | ------------ |`,
+| -------- | -------- | -------- | ------------ |`,
 };
 
 async function handler(ctx) {

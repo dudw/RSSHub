@@ -22,8 +22,8 @@ export const route: Route = {
     maintainers: ['linbuxiao'],
     handler,
     description: `| 推荐      | 党史    | 豫股  | 财经     | 投教      | 金融    | 科创    | 投融   | 专栏   |
-  | --------- | ------- | ----- | -------- | --------- | ------- | ------- | ------ | ------ |
-  | recommend | history | stock | business | education | finance | science | invest | column |`,
+| --------- | ------- | ----- | -------- | --------- | ------- | ------- | ------ | ------ |
+| recommend | history | stock | business | education | finance | science | invest | column |`,
 };
 
 async function handler(ctx) {
@@ -72,7 +72,7 @@ async function handler(ctx) {
         )
     );
 
-    return {
+    const ret = {
         title: '大河财立方',
         link: parseUrl(type),
         description: `大河财立方 ${TYPE[type].name}`,
@@ -80,10 +80,6 @@ async function handler(ctx) {
         item: items,
     };
 
-    ctx.set('json', {
-        title: '大河财立方',
-        link: parseUrl(type),
-        description: `大河财立方 ${TYPE[type].name}`,
-        items,
-    });
+    ctx.set('json', ret);
+    return ret;
 }

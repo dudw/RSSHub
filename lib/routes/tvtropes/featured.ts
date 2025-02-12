@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import got from '@/utils/got';
 import { load } from 'cheerio';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const categories = {
     today: 'left',
@@ -29,8 +29,8 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| Today's Featured Trope | Newest Trope |
-  | ---------------------- | ------------ |
-  | today                  | newest       |`,
+| ---------------------- | ------------ |
+| today                  | newest       |`,
 };
 
 async function handler(ctx) {

@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { load } from 'cheerio';
-import * as path from 'node:path';
+import path from 'node:path';
 import { art } from '@/utils/render';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
@@ -27,12 +27,12 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| Latest | Editor's Picks | Photos of the Day |
-  | ------ | -------------- | ----------------- |
-  | news   | editorspicks   | photos            |
+| ------ | -------------- | ----------------- |
+| news   | editorspicks   | photos            |
 
-  | Politics | Cross-strait | Business | Society | Science & Tech | Culture | Sports |
-  | -------- | ------------ | -------- | ------- | -------------- | ------- | ------ |
-  | politics | cross-strait | business | society | science & tech | culture | sports |`,
+| Politics | Cross-strait | Business | Society | Science & Tech | Culture | Sports |
+| -------- | ------------ | -------- | ------- | -------------- | ------- | ------ |
+| politics | cross-strait | business | society | science & tech | culture | sports |`,
 };
 
 async function handler(ctx) {

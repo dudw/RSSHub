@@ -4,6 +4,7 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
+import InvalidParameterError from '@/errors/types/invalid-parameter';
 
 const map = new Map([
     ['tzgg', { title: '中国科学技术大学信息科学技术学院 - 通知公告', id: '5142' }],
@@ -36,15 +37,15 @@ export const route: Route = {
     handler,
     url: 'sist.ustc.edu.cn/',
     description: `| 通知公告 | 招生工作 |
-  | -------- | -------- |
-  | tzgg     | zsgz     |`,
+| -------- | -------- |
+| tzgg     | zsgz     |`,
 };
 
 async function handler(ctx) {
     const type = ctx.req.param('type') ?? 'tzgg';
     const info = map.get(type);
     if (!info) {
-        throw new Error('invalid type');
+        throw new InvalidParameterError('invalid type');
     }
     const id = info.id;
 

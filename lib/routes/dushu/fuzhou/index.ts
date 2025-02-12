@@ -2,9 +2,9 @@ import { Route } from '@/types';
 import { getCurrentPath } from '@/utils/helpers';
 const __dirname = getCurrentPath(import.meta.url);
 
-import got from '@/utils/got';
+import ofetch from '@/utils/ofetch';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const host = 'https://gateway-api-ipv4.dushu365.com/compose-orch/offlineActivity/v100/activity/list';
 const itemLink = 'https://card.dushu.io/requirement/offline-activity/activity-detail/v/index.html';
@@ -42,16 +42,15 @@ export const route: Route = {
 };
 
 async function handler() {
-    const response = await got
-        .post(host, {
-            json: {
-                channelTid: 'xtntzsnwsnkw511r',
-                pageNo: 1,
-                pageSize: 10,
-                type: 0,
-            },
-        })
-        .json();
+    const response = await ofetch(host, {
+        method: 'POST',
+        body: {
+            channelTid: 'xtntzsnwsnkw511r',
+            pageNo: 1,
+            pageSize: 10,
+            type: 0,
+        },
+    });
 
     const data = response.data.activityListVOS;
     data.map((element) => transformTime(element));

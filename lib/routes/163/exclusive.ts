@@ -8,7 +8,7 @@ import { load } from 'cheerio';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const ids = {
     '': {
@@ -99,23 +99,23 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| 分类     | 编号 |
-  | -------- | ---- |
-  | 首页     |      |
-  | 轻松一刻 | qsyk |
-  | 槽值     | cz   |
-  | 人间     | rj   |
-  | 大国小民 | dgxm |
-  | 三三有梗 | ssyg |
-  | 数读     | sd   |
-  | 看客     | kk   |
-  | 下划线   | xhx  |
-  | 谈心社   | txs  |
-  | 哒哒     | dd   |
-  | 胖编怪聊 | pbgl |
-  | 曲一刀   | qyd  |
-  | 今日之声 | jrzs |
-  | 浪潮     | lc   |
-  | 沸点     | fd   |`,
+| -------- | ---- |
+| 首页     |      |
+| 轻松一刻 | qsyk |
+| 槽值     | cz   |
+| 人间     | rj   |
+| 大国小民 | dgxm |
+| 三三有梗 | ssyg |
+| 数读     | sd   |
+| 看客     | kk   |
+| 下划线   | xhx  |
+| 谈心社   | txs  |
+| 哒哒     | dd   |
+| 胖编怪聊 | pbgl |
+| 曲一刀   | qyd  |
+| 今日之声 | jrzs |
+| 浪潮     | lc   |
+| 沸点     | fd   |`,
 };
 
 async function handler(ctx) {

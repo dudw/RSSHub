@@ -7,7 +7,7 @@ import { load } from 'cheerio';
 import got from '@/utils/got';
 import { getData, getList } from './utils';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import asyncPool from 'tiny-async-pool';
 
 const _website = 'dlnews';
@@ -69,10 +69,11 @@ export const route: Route = {
             target: '/:category',
         },
     ],
-    name: 'Unknown',
+    url: 'dlnews.com/articles',
+    name: 'Latest News',
     maintainers: ['Rjnishant530'],
     handler,
-    url: 'dlnews.com/articles/',
+    example: '/dlnews/people-culture',
 };
 
 async function handler(ctx) {

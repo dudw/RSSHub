@@ -7,7 +7,7 @@ import { load } from 'cheerio';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const lines = {
     CM: '中国移动',
@@ -32,8 +32,8 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| v4 | v6 |
-  | -- | -- |
-  |    | v6 |`,
+| -- | -- |
+|    | v6 |`,
 };
 
 async function handler(ctx) {

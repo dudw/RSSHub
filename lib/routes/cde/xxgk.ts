@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import utils from './utils';
 
 const baseUrl = 'https://www.cde.org.cn';
@@ -67,8 +67,8 @@ export const route: Route = {
     maintainers: ['TonyRL'],
     handler,
     description: `|   优先审评公示   |  突破性治疗公示  | 临床试验默示许可 |
-  | :--------------: | :--------------: | :--------------: |
-  | priorityApproval | breakthroughCure |     cliniCal     |`,
+| :--------------: | :--------------: | :--------------: |
+| priorityApproval | breakthroughCure |     cliniCal     |`,
 };
 
 async function handler(ctx) {

@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import timezone from '@/utils/timezone';
 
 // 各地区url信息
@@ -93,8 +93,8 @@ export const route: Route = {
     maintainers: ['zytomorrow'],
     handler,
     description: `| 法定主动内容 | 公示公告 |
-  | :----------: | :------: |
-  |    fdzdnr    |   gsgg   |`,
+| :----------: | :------: |
+|    fdzdnr    |   gsgg   |`,
 };
 
 async function handler(ctx) {

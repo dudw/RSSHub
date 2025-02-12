@@ -1,6 +1,6 @@
 import { namespaces } from '../../lib/registry';
 import fs from 'node:fs';
-import * as path from 'node:path';
+import path from 'node:path';
 import { categories } from './data';
 import { getCurrentPath } from '../../lib/utils/helpers';
 
@@ -96,8 +96,17 @@ function generateMd(lang) {
                 }
             });
 
+            const processedPaths = new Set();
+
             for (const realPath of realPaths) {
                 const data = docs[category][namespace].routes[realPath];
+                if (Array.isArray(data.path)) {
+                    if (processedPaths.has(data.path[0])) {
+                        continue;
+                    }
+                    processedPaths.add(data.path[0]);
+                }
+
                 const test = testResult.find((t) => t.title === realPath);
                 const parsedTest = test
                     ? {

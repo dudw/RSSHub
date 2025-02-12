@@ -7,11 +7,11 @@ import { parseDate } from '@/utils/parse-date';
 import { load } from 'cheerio';
 import got from '@/utils/got';
 import md5 from '@/utils/md5';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/radios/:category?',
-    categories: ['new-media'],
+    categories: ['new-media', 'popular'],
     example: '/gcores/radios/45',
     parameters: { category: '分类名，默认为全部，可在分类页面的 URL 中找到，如 Gadio News -- 45' },
     features: {

@@ -8,7 +8,7 @@ import { load } from 'cheerio';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { CookieJar } from 'tough-cookie';
 
 const cookieJar = new CookieJar();
@@ -81,8 +81,8 @@ export const route: Route = {
     handler,
     url: 'hkej.com/',
     description: `| index    | stock    | hongkong | china    | international | property | current  |
-  | -------- | -------- | -------- | -------- | ------------- | -------- | -------- |
-  | 全部新闻 | 港股直击 | 香港财经 | 中国财经 | 国际财经      | 地产新闻 | 时事脉搏 |`,
+| -------- | -------- | -------- | -------- | ------------- | -------- | -------- |
+| 全部新闻 | 港股直击 | 香港财经 | 中国财经 | 国际财经      | 地产新闻 | 时事脉搏 |`,
 };
 
 async function handler(ctx) {
@@ -167,7 +167,7 @@ async function handler(ctx) {
             )
     );
 
-    return {
+    const ret = {
         title: `信報網站 - ${cat.title} - 信報網站 hkej.com`,
         link: baseUrl + cat.link,
         description: `信報網站(www.hkej.com)即時新聞${cat.name}，提供${cat.description}。`,
@@ -176,11 +176,8 @@ async function handler(ctx) {
     };
 
     ctx.set('json', {
-        title: `信報網站 - ${cat.title} - 信報網站 hkej.com`,
-        link: baseUrl + cat.link,
-        description: `信報網站(www.hkej.com)即時新聞${cat.name}，提供${cat.description}。`,
-        item: items,
-        language: 'zh-hk',
+        ...ret,
         cookieJar,
     });
+    return ret;
 }

@@ -4,7 +4,7 @@ const __dirname = getCurrentPath(import.meta.url);
 
 import got from '@/utils/got';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 import { load } from 'cheerio';
 const host = 'https://www.patagonia.com';
 const categoryMap = {
@@ -36,8 +36,8 @@ export const route: Route = {
     maintainers: [],
     handler,
     description: `| Men's | Women's | Kids' & Baby | Packs & Gear |
-  | ----- | ------- | ------------ | ------------ |
-  | mens  | womens  | kids         | luggage      |`,
+| ----- | ------- | ------------ | ------------ |
+| mens  | womens  | kids         | luggage      |`,
 };
 
 async function handler(ctx) {

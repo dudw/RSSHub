@@ -5,7 +5,7 @@ const __dirname = getCurrentPath(import.meta.url);
 import got from '@/utils/got';
 import { load } from 'cheerio';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const host = 'https://www.yxdzqb.com';
 
@@ -40,8 +40,8 @@ export const route: Route = {
     handler,
     url: 'yxdzqb.com/',
     description: `| Steam 最新折扣 | Steam 热门游戏折扣 | Steam 热门中文游戏折扣 | Steam 历史低价 | Steam 中文游戏历史低价 |
-  | -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |
-  | discount       | popular            | popular\_cn            | low            | low\_cn                |`,
+| -------------- | ------------------ | ---------------------- | -------------- | ---------------------- |
+| discount       | popular            | popular\_cn            | low            | low\_cn                |`,
 };
 
 async function handler(ctx) {

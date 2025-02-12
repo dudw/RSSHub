@@ -8,7 +8,7 @@ import { load } from 'cheerio';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/std/:category?',
@@ -27,8 +27,8 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| 通知公告 | 重要通知 | 项目申报 | 成果申报 | 信息快讯 |
-  | -------- | -------- | -------- | -------- | -------- |
-  |          | zytz     | xmsb     | cgsb     | xxkx     |`,
+| -------- | -------- | -------- | -------- | -------- |
+|          | zytz     | xmsb     | cgsb     | xxkx     |`,
 };
 
 async function handler(ctx) {

@@ -7,7 +7,7 @@ import got from '@/utils/got';
 import timezone from '@/utils/timezone';
 import { parseDate } from '@/utils/parse-date';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 const categories = {
     latest: {
@@ -104,9 +104,9 @@ export const route: Route = {
     handler,
     description: `#### 新闻 {#mi-ha-you-yuan-shen-xin-wen}
 
-  | 最新   | 新闻 | 公告   | 活动     |
-  | ------ | ---- | ------ | -------- |
-  | latest | news | notice | activity |`,
+| 最新   | 新闻 | 公告   | 活动     |
+| ------ | ---- | ------ | -------- |
+| latest | news | notice | activity |`,
 };
 
 async function handler(ctx) {

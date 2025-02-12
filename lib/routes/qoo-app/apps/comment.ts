@@ -8,7 +8,7 @@ import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
 import { appsUrl } from '../utils';
 import { art } from '@/utils/render';
-import * as path from 'node:path';
+import path from 'node:path';
 
 export const route: Route = {
     path: '/apps/:lang?/comment/:id',
@@ -27,8 +27,8 @@ export const route: Route = {
     maintainers: ['TonyRL'],
     handler,
     description: `| 中文 | English | 한국어 | Español | 日本語 | ไทย | Tiếng Việt |
-  | ---- | ------- | ------ | ------- | ------ | --- | ---------- |
-  |      | en      | ko     | es      | ja     | th  | vi         |`,
+| ---- | ------- | ------ | ------- | ------ | --- | ---------- |
+|      | en      | ko     | es      | ja     | th  | vi         |`,
 };
 
 async function handler(ctx) {
